@@ -65,7 +65,6 @@ function startGame () {
   // Don't remove this function call: it makes the game work!
   for (var i=0; i<board.cells.length; i++){
     board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
-    console.log(typeof board.cells[i].surroundingMines + board.cells[i].surroundingMines)
   }
   lib.initBoard()
   document.addEventListener('click', checkForWin)
@@ -122,3 +121,33 @@ function countSurroundingMines (cell) {
   }
   return numberOfMines
 }
+
+//Stretch 1 - autogenerate board
+//when createBoard is called 
+    //a board object is created
+    //board object contains array of objects
+    //objects have properties
+    //values of properties comes from...
+
+    //createBoard(size)
+    //createBoard(3)
+
+// createBoard() {
+//   board = []
+//   board = 
+// }
+
+var newCell = generateCell(3, 3)
+console.log(newCell)
+
+function generateCell(row, col) {
+  var cell = {}
+  cell.row = row
+  cell.col = col
+  cell.isMine = true
+  cell.isMarked = false
+  cell.hidden = true
+  return cell
+}
+
+//
