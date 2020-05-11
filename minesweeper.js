@@ -124,93 +124,50 @@ function countSurroundingMines (cell) {
 
 //STRETCH 1 - autogenerate board
 
-
-
-
-
 //generate one cell
-function generateCell() {
+function generateCell(row, col) {
   var cell = {}
-  // cell.row = row
-  // cell.col = 1
+  cell.row = row
+  cell.col = col
   cell.isMine = true
   cell.isMarked = false
   cell.hidden = true
-  // console.log(cell)
   return cell
 }
 
 //generate x number of cells
-function generateMultipleCells(num) {
+function generateMultipleCells(row, col) {
   var cells = []
-  for(i=0; i<num; i++) {
-    cells[i] = generateCell()
+  var total = row * col
+  for(i=0; i<total; i++) {
+    cells[i] = generateCell(row, col)
+    cells[i].row = Math.floor(i/col)+1
+    cells[i].col = i%col + 1
   }
   board.cells = cells
   return cells
 }
 
 
-//when generateBoard is called 
+    //when generateBoard is called 
     //a board object is generated
     //board object contains array of objects
     //objects have properties
     //values of properties comes from...
     //add x number of cell objects to board array
-
-
+    //return the array
 
 function generateBoard(row, col) {
   var board = {}
-  board.cells = generateMultipleCells(row * col)
+  board.cells = generateMultipleCells(row, col)
   return board
 }
 
 
 
-// var newcells = generateMultipleCells(3) 
-var newBoard = generateBoard(3, 1)
+var newBoard = generateBoard(3, 3)
 console.log(newBoard)
-// console.log(newcells)
 
 
-// take number of cells required
-// generate multiple cells using generateCell()
-// add each to an array
-// return the array
-
-
-
-
-//OLD WORKINGS
-// function generateMultipleCells(num) {
-//   for(i=0; i<num; i++) {
-//     var newCellArray = []
-//   var newCell = generateCell()
-//   newCellArray.push(newCell)
-//   }
-//   console.log(newCell)
-//   console.log(newCellArray)
-//   return(newCell)
-// }
-
-// generateMultipleCells(3)
-
-// console.log("NewBoard " + newBoard + typeof newBoard)
-
-//add three cells to board array
-//every fourth(numOfRows) cell.row property should increase by one
-// board = [ {cell.row = 0}, {cell.row = 1}]
-
-// var newCell = generateCell()
-// console.log(newCell)
-
-// generateMultipleCells(generateCell, 3)
-
-
-// function generateMultipleCells(func, times) {
-//   func();
-//   times && --times && generateMultipleCells(func, times)
-// }
 
 //
