@@ -122,32 +122,93 @@ function countSurroundingMines (cell) {
   return numberOfMines
 }
 
-//Stretch 1 - autogenerate board
-//when createBoard is called 
-    //a board object is created
-    //board object contains array of objects
-    //objects have properties
-    //values of properties comes from...
+//STRETCH 1 - autogenerate board
 
-    //createBoard(size)
-    //createBoard(3)
 
-// createBoard() {
-//   board = []
-//   board = 
-// }
 
-var newCell = generateCell(3, 3)
-console.log(newCell)
 
-function generateCell(row, col) {
+
+//generate one cell
+function generateCell() {
   var cell = {}
-  cell.row = row
-  cell.col = col
+  // cell.row = row
+  // cell.col = 1
   cell.isMine = true
   cell.isMarked = false
   cell.hidden = true
+  // console.log(cell)
   return cell
 }
+
+//generate x number of cells
+function generateMultipleCells(num) {
+  var cells = []
+  for(i=0; i<num; i++) {
+    cells[i] = generateCell()
+  }
+  board.cells = cells
+  return cells
+}
+
+
+
+var newcells = generateMultipleCells(3) 
+console.log(newcells)
+
+
+//when generateBoard is called 
+    //a board object is generated
+    //board object contains array of objects
+    //objects have properties
+    //values of properties comes from...
+    //add x number of cell objects to board array
+
+
+
+// function generateBoard(num) {
+//   var board = {}
+ 
+// }
+
+
+
+// take number of cells required
+// generate multiple cells using generateCell()
+// add each to an array
+// return the array
+
+
+
+
+//OLD WORKINGS
+// function generateMultipleCells(num) {
+//   for(i=0; i<num; i++) {
+//     var newCellArray = []
+//   var newCell = generateCell()
+//   newCellArray.push(newCell)
+//   }
+//   console.log(newCell)
+//   console.log(newCellArray)
+//   return(newCell)
+// }
+
+// generateMultipleCells(3)
+
+// console.log("NewBoard " + newBoard + typeof newBoard)
+
+//add three cells to board array
+//every fourth(numOfRows) cell.row property should increase by one
+// board = [ {cell.row = 0}, {cell.row = 1}]
+
+// var newCell = generateCell()
+// console.log(newCell)
+
+// generateMultipleCells(generateCell, 3)
+
+
+// function generateMultipleCells(func, times) {
+//   func();
+//   times && --times && generateMultipleCells(func, times)
+// }
 
 //
