@@ -129,7 +129,7 @@ function generateCell(row, col) {
   var cell = {}
   cell.row = row
   cell.col = col
-  cell.isMine = true
+  cell.isMine = Math.random() < 0.5
   cell.isMarked = false
   cell.hidden = true
   return cell
@@ -156,6 +156,7 @@ function generateMultipleCells(row, col) {
     //values of properties comes from...
     //add x number of cell objects to board array
     //return the array
+    
 
 function generateBoard(row, col) {
   var board = {}
