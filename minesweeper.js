@@ -1,64 +1,67 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
-var board = {
-  cells: [
-    {
-      row: 1,
-      col: 1, 
-      isMine: true, 
-      hidden: true
-    }, 
-    {
-      row: 1,
-      col: 2, 
-      isMine: true, 
-      hidden: true
-    }, 
-    {
-      row: 1,
-      col: 3, 
-      isMine: false, 
-      hidden: true
-    }, 
-    {
-      row: 2,
-      col: 1, 
-      isMine: true, 
-      hidden: true
-    }, 
-    {
-      row: 2,
-      col: 2, 
-      isMine: false, 
-      hidden: true
-    }, 
-    {
-      row: 2,
-      col: 3, 
-      isMine: false, 
-      hidden: true
-    }, 
-    {
-      row: 3,
-      col: 1, 
-      isMine: false, 
-      hidden: true
-    }, 
-    {
-      row: 3,
-      col: 2, 
-      isMine: false, 
-      hidden: true
-    }, 
-    {
-      row: 3,
-      col: 3, 
-      isMine: false, 
-      hidden: true
-    }, 
-  ]
-}
+
+var board = generateBoard(3, 3)
+
+// var board = {
+//   cells: [
+//     {
+//       row: 1,
+//       col: 1, 
+//       isMine: true, 
+//       hidden: true
+//     }, 
+//     {
+//       row: 1,
+//       col: 2, 
+//       isMine: true, 
+//       hidden: true
+//     }, 
+//     {
+//       row: 1,
+//       col: 3, 
+//       isMine: false, 
+//       hidden: true
+//     }, 
+//     {
+//       row: 2,
+//       col: 1, 
+//       isMine: true, 
+//       hidden: true
+//     }, 
+//     {
+//       row: 2,
+//       col: 2, 
+//       isMine: false, 
+//       hidden: true
+//     }, 
+//     {
+//       row: 2,
+//       col: 3, 
+//       isMine: false, 
+//       hidden: true
+//     }, 
+//     {
+//       row: 3,
+//       col: 1, 
+//       isMine: false, 
+//       hidden: true
+//     }, 
+//     {
+//       row: 3,
+//       col: 2, 
+//       isMine: false, 
+//       hidden: true
+//     }, 
+//     {
+//       row: 3,
+//       col: 3, 
+//       isMine: false, 
+//       hidden: true
+//     }, 
+//   ]
+// }
 
 
 function startGame () {
@@ -69,6 +72,7 @@ function startGame () {
   lib.initBoard()
   document.addEventListener('click', checkForWin)
   document.addEventListener('contextmenu', checkForWin)
+  document.getElementById('reset-button').addEventListener('click', resetBoard)
 }
 
 // Define this function to look for a win condition:
@@ -144,7 +148,7 @@ function generateMultipleCells(row, col) {
     cells[i].row = Math.floor(i/col)+1
     cells[i].col = i%col + 1
   }
-  board.cells = cells
+  // board.cells = cells
   return cells
 }
 
@@ -166,9 +170,73 @@ function generateBoard(row, col) {
 
 
 
-var newBoard = generateBoard(3, 3)
-console.log(newBoard)
 
 
 
-//
+
+//STRETCH 2 - reset the board
+//make button for reset
+//on click call resetBoard function
+
+//reset classes
+//re-initialise global board object
+//mines should be shuffled
+//no extra cells added
+
+function resetBoard() {
+  console.log("reset the board")
+  resetClasses(document.getElementsByClassName('board')[0].children)
+  board = generateBoard(3,3)
+  for (var i=0; i<board.cells.length; i++){
+    board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
+  }
+  // lib.initBoard()
+
+  // document.addEventListener('click', checkForWin)
+  // document.addEventListener('contextmenu', checkForWin)
+  
+  
+  // board.cells.sort(cellCompare)
+  // location.reload()               will refresh the page
+  
+  //Try to reinitialise the board
+  //reinitialise global board object???
+  //on button click 
+  // document.getElementsByClassName('board')[0].children.remove()
+  // drawBoard(boardNode)
+  // addListeners(boardNode)
+
+  // for (var i=0; i<board.cells.length; i++){
+  //   board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
+  // }
+  
+  // function deleteBoard (boardNode) {
+  //   boardNode.style.width = Math.sqrt(board.cells.length) * 85 + 'px'
+  //   board.cells.reduce(cellsToNodes, boardNode)
+  // }
+
+  // var boardNode = document.getElementsByClassName('board')[0]
+
+  // lib.initBoard()
+  // newBoard = generateBoard(3, 3)
+  
+  //Trying to reset classes to default
+  // .classList.add('hidden')
+  // .classList.remove('marked')
+  
+  //Different ways to select the cells
+  // console.log(document.getElementsByClassName('board')[0].children)
+  // resetClasses(document.getElementsByClassName('row-1'))
+  // console.log(document.querySelectorAll('.board > div'))
+}
+
+function resetClasses(arr) {
+  for (var i = 0; i < arr.length; i++) {
+    arr[i].classList.add('hidden')
+    arr[i].classList.remove('marked')
+    arr[i].innerHTML = ''
+    arr[i].addEventListener('click', showCell)
+    arr[i].addEventListener('contextmenu', markCell)
+
+  }
+}
