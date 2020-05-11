@@ -151,11 +151,6 @@ function generateMultipleCells(num) {
 }
 
 
-
-var newcells = generateMultipleCells(3) 
-console.log(newcells)
-
-
 //when generateBoard is called 
     //a board object is generated
     //board object contains array of objects
@@ -165,11 +160,18 @@ console.log(newcells)
 
 
 
-// function generateBoard(num) {
-//   var board = {}
- 
-// }
+function generateBoard(row, col) {
+  var board = {}
+  board.cells = generateMultipleCells(row * col)
+  return board
+}
 
+
+
+// var newcells = generateMultipleCells(3) 
+var newBoard = generateBoard(3, 1)
+console.log(newBoard)
+// console.log(newcells)
 
 
 // take number of cells required
