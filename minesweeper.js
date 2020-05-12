@@ -197,7 +197,6 @@ function resetBoard() {
     var userGridSize = document.querySelector('input[name="size"]:checked').value;
     var userDifficulty = document.querySelector('input[name="difficulty"]:checked').value;
     board = generateBoard(userGridSize, userGridSize, userDifficulty)
-    // if (userGridSize != 0){
     // } else generateBoard(3,3)
     // userGridSize = 0
 
