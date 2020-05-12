@@ -14,6 +14,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 
 #message {
@@ -23,6 +24,7 @@ body {
 .board {
   display: flex;
   flex-wrap: wrap;
+  margin: 10px;
 }
 
 .board div {
@@ -44,12 +46,12 @@ body {
 }
 
 div.mine, div.mine:hover {
-  background: no-repeat center/60% url("images/bone.svg") #412e22;
+  background: no-repeat center/60% url("images/bone.svg") #886148;
 }
 
 div.hidden {
   background: gray ;
-  background: no-repeat center/100% url("images/grass.png") #909090;
+  background: no-repeat center/100% url("images/dirt.png") #909090;
 }
 
 div.hidden:hover {
@@ -70,5 +72,9 @@ button {
 
 button:hover {
   background-color: #ccc;
+}
+
+label {
+  padding-left: 10px;
 }
 
