@@ -9,22 +9,36 @@
   </head>
   <body>
     <div id="message"></div>
-    <div id="notes"></div>
+    <div id="notes">You dog has been busy hiding bones in the garden. <br>Dig in the garden without uncovering a bone.</div>
     <div class="board"></div>
+    <div>
+      <form id="preferences">
+        Grid size:
+        <label for="3_3">3x3</label>
+        <input type="radio" id="3_3" name="size" value=3 checked="checked">
+        <label for="4_4">4x4</label>
+        <input type="radio" id="4_4" name="size" value=4>
+        <label for="5_5">5x5</label>
+        <input type="radio" id="5_5" name="size" value=5>
+        <!-- <input type="submit"> -->
+        <!-- <label for="difficulty">Difficulty:</label><br>
+        <input type="text" id="lname" name="lname"> -->
+      </form>
+    </div>
     <div class="button" id="reset-button">
       <button>Reset</button>
     </div>
-    <audio id="bark">
-      <source src="audio/bark.mp3"></source>
-      <source src="audio/bark.ogg"></source>
+    <audio id="barking">
+      <source src="audio/barking.mp3"></source>
+      <source src="audio/barking.ogg"></source>
     </audio>
-    <audio id="bang">
-      <source src="audio/bang.mp3"></source>
-      <source src="audio/bang.ogg"></source>
+    <audio id="growl">
+      <source src="audio/growl.mp3"></source>
+      <source src="audio/growl.mp3"></source>
     </audio>
-    <audio id="whoosh">
-      <source src="audio/whoosh.mp3"></source>
-      <source src="audio/whoosh.ogg"></source>
+    <audio id="digging">
+      <source src="audio/digging.mp3"></source>
+      <source src="audio/digging.ogg"></source>
     </audio>
     <audio id="applause">
       <source src="audio/applause.mp3"></source>
