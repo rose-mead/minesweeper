@@ -3,14 +3,74 @@ document.addEventListener('DOMContentLoaded', startGame)
 // Define your `board` object here!
 var board = {}
 
+// var board = {
+//   cells: [
+//     {
+//       row: 1,
+//       col: 1, 
+//       isMine: true, 
+//       hidden: true
+//     }, 
+//     {
+//       row: 1,
+//       col: 2, 
+//       isMine: true, 
+//       hidden: true
+//     }, 
+//     {
+//       row: 1,
+//       col: 3, 
+//       isMine: false, 
+//       hidden: true
+//     }, 
+//     {
+//       row: 2,
+//       col: 1, 
+//       isMine: false, 
+//       hidden: true
+//     }, 
+//     {
+//       row: 2,
+//       col: 2, 
+//       isMine: false, 
+//       hidden: true
+//     }, 
+//     {
+//       row: 2,
+//       col: 3, 
+//       isMine: false, 
+//       hidden: true
+//     }, 
+//     {
+//       row: 3,
+//       col: 1, 
+//       isMine: false, 
+//       hidden: true
+//     }, 
+//     {
+//       row: 3,
+//       col: 2, 
+//       isMine: false, 
+//       hidden: true
+//     }, 
+//     {
+//       row: 3,
+//       col: 3, 
+//       isMine: false, 
+//       hidden: true
+//     }, 
+//   ]
+// }
+
 function startGame () {
-  board = generateBoard(3, 3)
+  board = generateBoard(4, 4)
   // Don't remove this function call: it makes the game work!
   for (var i=0; i<board.cells.length; i++){
     board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
   }
   lib.initBoard()
   addEventListeners()
+  addAudioEventListeners()
 }
 
 function addEventListeners() {
@@ -79,7 +139,7 @@ function generateCell(row, col) {
   var cell = {}
   cell.row = row
   cell.col = col
-  cell.isMine = Math.random() < 0.5
+  cell.isMine = Math.random() < 0.3
   cell.isMarked = false
   cell.hidden = true
   return cell
@@ -132,25 +192,48 @@ function resetBoard() {
 
 
 
-  //Different ways to select the cells
-  // console.log(document.getElementsByClassName('board')[0].children)
-  // resetClasses(document.getElementsByClassName('row-1'))
-  // console.log(document.querySelectorAll('.board > div'))
+// STRETCH 3 - Sound effects
+// Find out how to play sound
+
+// Play sound when user
+  // uncovers cell  - that is not mine
+  // marks cell
+  // uncover bomb   -
+  // win
+
+  //set event listener to listen for right-click on any square
+    //play bark
+  //set event listener to listen for click on any square
+  //after click - check for class - mine
+    //play bang
+  // or play whoosh
 
 
 
+function playBark() {
+  bark.load()
+  bark.play()
+}
+
+function playBang() {
+  bang.load()
+  bang.play()
+  }
+
+function playWhoosh() {
+  whoosh.load()
+  whoosh.play()
+  }
 
 
-// Reset class function - no longer need to use this 
-// resetClasses(document.getElementsByClassName('board')[0].children)
 
-// function resetClasses(arr) {
-//   for (var i = 0; i < arr.length; i++) {
-//     arr[i].classList.add('hidden')
-//     arr[i].classList.remove('marked')
-//     arr[i].innerHTML = ''
-//     arr[i].addEventListener('click', showCell)
-//     arr[i].addEventListener('contextmenu', markCell)
+function addAudioEventListeners() {
+  var mines = document.getElementsByClassName('mine')
+  for (i = 0; i < mines.length; i++) {
+    mines[i].addEventListener('click', playBang)
+  }
+  document.getElementsByClassName('board')[0].addEventListener('contextmenu', playBark)
+  document.getElementsByClassName('board')[0].addEventListener('click', playWhoosh)
+}
 
-//   }
-// }
+
