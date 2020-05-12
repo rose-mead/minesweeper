@@ -26,7 +26,7 @@ body {
 }
 
 .board div {
-  color: green;
+  color: rgb(0, 0, 0);
   font-size: 2rem;
   width: 75px;
   height: 75px;
@@ -44,7 +44,7 @@ body {
 }
 
 div.mine, div.mine:hover {
-  background: no-repeat center/60% url("images/bomb.svg") crimson;
+  background: no-repeat center/60% url("images/bone.svg") #76523b;
 }
 
 div.hidden {
@@ -56,5 +56,16 @@ div.hidden:hover {
 }
 
 div.marked, div.marked:hover {
-  background: no-repeat center/60% url("images/mark.svg") deepskyblue;
+  background: no-repeat center/60% url("images/mark.svg") #909090;
+}
+
+button {
+  padding: 6px 20px;
+  margin: 20px;
+  font-size: 1rem;
+  border-radius: 10%;
+}
+
+button:hover {
+  background-color: #ccc;
 }
