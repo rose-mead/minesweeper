@@ -195,6 +195,7 @@ function generateBoard(row, col) {
 // no extra cells added
 
 function resetBoard() {
+    barking.pause()
     document.getElementsByClassName('board')[0].innerHTML = ""
     var userGridSize = document.querySelector('input[name="size"]:checked').value;
     board = generateBoard(userGridSize, userGridSize)
@@ -229,19 +230,20 @@ function resetBoard() {
 
 
 
-function playBark() {
-  bark.load()
-  bark.play()
+function playGrowl() {
+  growl.load()
+  growl.play()
 }
 
-function playBang() {
-  bang.load()
-  bang.play()
+function playBarking() {
+  digging.pause()
+  barking.load()
+  barking.play()
   }
 
-function playWhoosh() {
-  whoosh.load()
-  whoosh.play()
+function playDigging() {
+  digging.load()
+  digging.play()
   }
 
   function playApplause() {
@@ -253,10 +255,10 @@ function playWhoosh() {
 function addAudioEventListeners() {
   var mines = document.getElementsByClassName('mine')
   for (i = 0; i < mines.length; i++) {
-    mines[i].addEventListener('click', playBang)
+    mines[i].addEventListener('click', playBarking)
   }
-  document.getElementsByClassName('board')[0].addEventListener('contextmenu', playBark)
-  document.getElementsByClassName('board')[0].addEventListener('click', playWhoosh)
+  document.getElementsByClassName('board')[0].addEventListener('contextmenu', playGrowl)
+  document.getElementsByClassName('board')[0].addEventListener('click', playDigging)
 }
 
 
