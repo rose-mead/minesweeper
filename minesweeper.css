@@ -44,15 +44,16 @@ body {
 }
 
 div.mine, div.mine:hover {
-  background: no-repeat center/60% url("images/bone.svg") #76523b;
+  background: no-repeat center/60% url("images/bone.svg") #412e22;
 }
 
 div.hidden {
-  background: #eee;
+  background: gray ;
+  background: no-repeat center/100% url("images/grass.png") #909090;
 }
 
 div.hidden:hover {
-  background: #ccc;
+  background: no-repeat center/100% url("images/spade.svg") #ccc;
 }
 
 div.marked, div.marked:hover {
@@ -63,9 +64,11 @@ button {
   padding: 6px 20px;
   margin: 20px;
   font-size: 1rem;
-  border-radius: 10%;
+  border-radius: 2px;
+  /* outline: none; */
 }
 
 button:hover {
   background-color: #ccc;
 }
+
