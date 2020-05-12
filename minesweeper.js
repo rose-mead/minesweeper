@@ -3,67 +3,67 @@ document.addEventListener('DOMContentLoaded', startGame)
 // Define your `board` object here!
 var board = {}
 
-// var board = {
-//   cells: [
-//     {
-//       row: 1,
-//       col: 1, 
-//       isMine: true, 
-//       hidden: true
-//     }, 
-//     {
-//       row: 1,
-//       col: 2, 
-//       isMine: true, 
-//       hidden: true
-//     }, 
-//     {
-//       row: 1,
-//       col: 3, 
-//       isMine: false, 
-//       hidden: true
-//     }, 
-//     {
-//       row: 2,
-//       col: 1, 
-//       isMine: false, 
-//       hidden: true
-//     }, 
-//     {
-//       row: 2,
-//       col: 2, 
-//       isMine: false, 
-//       hidden: true
-//     }, 
-//     {
-//       row: 2,
-//       col: 3, 
-//       isMine: false, 
-//       hidden: true
-//     }, 
-//     {
-//       row: 3,
-//       col: 1, 
-//       isMine: false, 
-//       hidden: true
-//     }, 
-//     {
-//       row: 3,
-//       col: 2, 
-//       isMine: false, 
-//       hidden: true
-//     }, 
-//     {
-//       row: 3,
-//       col: 3, 
-//       isMine: false, 
-//       hidden: true
-//     }, 
-//   ]
-// }
+var board = {
+  cells: [
+    {
+      row: 1,
+      col: 1, 
+      isMine: true, 
+      hidden: true
+    }, 
+    {
+      row: 1,
+      col: 2, 
+      isMine: true, 
+      hidden: true
+    }, 
+    {
+      row: 1,
+      col: 3, 
+      isMine: false, 
+      hidden: true
+    }, 
+    {
+      row: 2,
+      col: 1, 
+      isMine: false, 
+      hidden: true
+    }, 
+    {
+      row: 2,
+      col: 2, 
+      isMine: false, 
+      hidden: true
+    }, 
+    {
+      row: 2,
+      col: 3, 
+      isMine: false, 
+      hidden: true
+    }, 
+    {
+      row: 3,
+      col: 1, 
+      isMine: false, 
+      hidden: true
+    }, 
+    {
+      row: 3,
+      col: 2, 
+      isMine: false, 
+      hidden: true
+    }, 
+    {
+      row: 3,
+      col: 3, 
+      isMine: false, 
+      hidden: true
+    }, 
+  ]
+}
 
 function startGame () {
-  board = generateBoard(4, 4)
+  // board = generateBoard(4, 4)
   // Don't remove this function call: it makes the game work!
   for (var i=0; i<board.cells.length; i++){
     board.cells[i].surroundingMines = countSurroundingMines(board.cells[i])
@@ -93,6 +93,7 @@ function checkForWin () {
     }
   }
   lib.displayMessage('You win!')
+  playApplause()
   
 //go through all of the cells
 //if all of the cells that are mines are marked
@@ -208,6 +209,10 @@ function resetBoard() {
     //play bang
   // or play whoosh
 
+  // Possible improvements to audio
+  // have one 'play audio' function - pass in the name of the audio file
+  // remove html <audio> have elements generated in the DOM
+
 
 
 function playBark() {
@@ -225,6 +230,10 @@ function playWhoosh() {
   whoosh.play()
   }
 
+  function playApplause() {
+    applause.load()
+    applause.play()
+    }
 
 
 function addAudioEventListeners() {
@@ -235,5 +244,7 @@ function addAudioEventListeners() {
   document.getElementsByClassName('board')[0].addEventListener('contextmenu', playBark)
   document.getElementsByClassName('board')[0].addEventListener('click', playWhoosh)
 }
+
+
 
 
