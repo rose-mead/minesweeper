@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
 var board = {}
-board = generateBoard(4, 4, 0.4)
+board = generateBoard(4, 4, 0.35)
 
 
 // var board = {
@@ -143,7 +143,7 @@ function generateCell(row, col, difficulty) {
   var cell = {}
   cell.row = row
   cell.col = col
-  cell.isMine = Math.random() < 0.2 * difficulty
+  cell.isMine = Math.random() < difficulty
   cell.isMarked = false
   cell.hidden = true
   return cell
