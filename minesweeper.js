@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
 var board = {}
-board = generateBoard(4, 4)
+board = generateBoard(4, 4, 0.4)
 
 
 // var board = {
@@ -79,14 +79,9 @@ function addEventListeners() {
   document.addEventListener('click', checkForWin)
   document.addEventListener('contextmenu', checkForWin)
   document.getElementById('reset-button').addEventListener('click', resetBoard)
-  // document.getElementById('reset-button').addEventListener('click', checkForm)
 }
 
-// function checkForm() {
-//   var userGridSize = document.querySelector('input[name="size"]:checked').value;
-  
-//   console.log(myValue)
-// }
+
 // Define this function to look for a win condition:
 //
 // 1. Are all of the cells that are NOT mines visible?
@@ -144,22 +139,24 @@ function countSurroundingMines (cell) {
 //STRETCH 1 - autogenerate board
 
 //generate one cell
-function generateCell(row, col) {
+function generateCell(row, col, difficulty) {
   var cell = {}
   cell.row = row
   cell.col = col
-  cell.isMine = Math.random() < 0.3
+  cell.isMine = Math.random() < 0.2 * difficulty
   cell.isMarked = false
   cell.hidden = true
   return cell
 }
 
+
+
 //generate x number of cells
-function generateMultipleCells(row, col) {
+function generateMultipleCells(row, col, difficulty) {
   var cells = []
   var total = row * col
   for(i=0; i<total; i++) {
-    cells[i] = generateCell(row, col)
+    cells[i] = generateCell(row, col, difficulty)
     cells[i].row = Math.floor(i/col)+1
     cells[i].col = i%col + 1
   }
@@ -176,9 +173,9 @@ function generateMultipleCells(row, col) {
 //return the array
     
 // Generate board with x rows and x columns
-function generateBoard(row, col) {
+function generateBoard(row, col, difficulty) {
   var board = {}
-  board.cells = generateMultipleCells(row, col)
+  board.cells = generateMultipleCells(row, col, difficulty)
   return board
 }
 
@@ -198,7 +195,8 @@ function resetBoard() {
     barking.pause()
     document.getElementsByClassName('board')[0].innerHTML = ""
     var userGridSize = document.querySelector('input[name="size"]:checked').value;
-    board = generateBoard(userGridSize, userGridSize)
+    var userDifficulty = document.querySelector('input[name="difficulty"]:checked').value;
+    board = generateBoard(userGridSize, userGridSize, userDifficulty)
     // if (userGridSize != 0){
     // } else generateBoard(3,3)
     // userGridSize = 0
