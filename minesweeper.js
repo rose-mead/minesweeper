@@ -143,7 +143,7 @@ function generateCell(row, col, difficulty) {
   var cell = {}
   cell.row = row
   cell.col = col
-  cell.isMine = Math.random() < difficulty
+  // cell.isMine = Math.random() < difficulty
   cell.isMarked = false
   cell.hidden = true
   return cell
@@ -155,13 +155,81 @@ function generateCell(row, col, difficulty) {
 function generateMultipleCells(row, col, difficulty) {
   var cells = []
   var total = row * col
-  for(i=0; i<total; i++) {
+  for(var i=0; i<total; i++) {
     cells[i] = generateCell(row, col, difficulty)
     cells[i].row = Math.floor(i/col)+1
     cells[i].col = i%col + 1
+    cells[i].isMine = false
   }
   return cells
 }
+
+//number of mines to plant
+//go to a random element in the grid - 
+    // eg board.cells.length = 9
+    //  get random number in array Math.floor(Math.random()*10) 
+    // board.cells[random number]
+    // turn it into a mine
+    // add to minesPlanted counter
+    // go to next random number
+    
+function decideIfMine(row, col, difficulty) {
+    var mines = Math.ceil(row * col * 0.1 * difficulty)
+    console.log(mines)
+    var minesPlanted = 0
+
+  while (minesPlanted < mines)
+  {
+    var arraySize = row * col
+    var randomNumber = Math.floor(Math.random()* arraySize)
+    if (board.cells[randomNumber].isMine == false) {
+      board.cells[randomNumber].isMine = true
+      // console.log(randomNumber)
+      minesPlanted++
+    }
+  }
+}
+
+//sm 3  easy  1   1
+//sm 3  med   2   2
+//sm 3  hard  3   3     9
+
+//sm 4  easy  1   2-3
+//sm 4  med   2   3-4
+//sm 4  hard  3   5-6    16
+
+// var minesPlanted = 0
+
+// function decideIfMine() {
+
+//   var mines = 3
+
+//   while (minesPlanted < mines)
+//   {
+//     if(Math.random() < 0.2) {
+//       minesPlanted++;
+//       console.log("mines planted ")
+//       console.log(minesPlanted)
+//       return true
+//     } else {
+//       return false
+//     }
+//   }
+// }
+
+// 3 EASY   =1          3, 6, 9
+// 3 MED    =2
+// 3 HARD   =3
+
+// 4
+// 5
+
+// Math.random()
+
+//if 3x3 easy set x number of mines
+//if 3x3 hard set y number of mines
+
+//if 4x4 set z number of mines
 
 
 //when generateBoard is called 
@@ -174,8 +242,10 @@ function generateMultipleCells(row, col, difficulty) {
     
 // Generate board with x rows and x columns
 function generateBoard(row, col, difficulty) {
-  var board = {}
+  // var board = {}
+  minesPlanted = 0
   board.cells = generateMultipleCells(row, col, difficulty)
+  decideIfMine(row, col, difficulty)
   return board
 }
 
