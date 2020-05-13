@@ -79,6 +79,12 @@ function addEventListeners() {
   document.addEventListener('click', checkForWin)
   document.addEventListener('contextmenu', checkForWin)
   document.getElementById('reset-button').addEventListener('click', resetBoard)
+  radioButtons = document.getElementsByTagName('input')
+  console.log(radioButtons)
+  for(i=0; i<radioButtons.length; i++) {
+    radioButtons[i].addEventListener('click', resetBoard)
+  }
+
 }
 
 
